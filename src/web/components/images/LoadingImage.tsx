@@ -1,13 +1,7 @@
 
 import React from 'react'
 import { Flex, Image, ProgressCircle, View, Text } from '@adobe/react-spectrum'
-
-export interface GeneratedImage {
-  href: string,
-  coverUrl: string,
-  prompt: string,
-  isLoading?: boolean
-}
+import { GeneratedImage } from '../../interfaces'
 
 export const LoadingImage = ({ coverUrl, prompt, isLoading }: GeneratedImage) => {
 

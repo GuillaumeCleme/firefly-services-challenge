@@ -1,34 +1,14 @@
 
 import React from 'react'
 import { Heading, View, TextArea, Button, Flex, Text, Grid, NumberField } from '@adobe/react-spectrum'
-import { GeneratedImage, LoadingImage } from '../components/images/LoadingImage';
+import { LoadingImage } from '../components/images/LoadingImage';
+import { GeneratedImage } from '../interfaces';
+import { useAppSelector } from '../redux/hooks';
+import { RootState } from '../redux/store';
 
 export const GenerateImage = () => {
 
-  const images: GeneratedImage[] = [
-    {
-      href: '/edit',
-      coverUrl: 'https://placehold.co/600x400?text=Loading',
-      prompt: 'Prompt Sample',
-      isLoading: true
-    },
-    {
-      href: '/edit',
-      coverUrl: 'https://placehold.co/600x400?text=Loading',
-      prompt: 'Prompt Sample',
-      isLoading: true
-    },
-    {
-      href: '/edit',
-      coverUrl: 'https://placehold.co/600x400?text=Loading',
-      prompt: 'Prompt Sample'
-    },
-    {
-      href: '/edit',
-      coverUrl: 'https://placehold.co/600x400?text=Loading',
-      prompt: 'Prompt Sample'
-    }
-  ];
+  const generatedImages: GeneratedImage[] = useAppSelector((state: RootState) => state.app.generatedImages);
 
   const generateImage = () => {
     console.log("Generate Image")
@@ -54,7 +34,7 @@ export const GenerateImage = () => {
         >
 
           {
-            images.map(image => (
+            generatedImages.map(image => (
               //TODO Map props
               <LoadingImage href={image.href} coverUrl={image.coverUrl} prompt='Prompt Sample' isLoading={image.isLoading} />
             ))
