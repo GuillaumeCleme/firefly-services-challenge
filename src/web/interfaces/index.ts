@@ -1,3 +1,4 @@
+import { GenerationOptions } from "../../server/interfaces"
 
 
 export interface GeneratedImage {
@@ -13,4 +14,8 @@ export interface ActionListing {
     description: string,
     href: string,
     coverUrl: string
+}
+
+export interface UIGenerationOptions extends GenerationOptions {
+        isValid: boolean
 }

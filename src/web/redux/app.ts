@@ -1,5 +1,5 @@
 import { Slice, createSlice } from "@reduxjs/toolkit";
-import { ActionListing, GeneratedImage } from "../interfaces";
+import { ActionListing, GeneratedImage, UIGenerationOptions } from "../interfaces";
 
 interface AppState {
     actions: ActionListing[]
@@ -7,11 +7,7 @@ interface AppState {
         isLoading: boolean;
         props: any;
     };
-    generation: {
-        prompt: string,
-        numImages: number
-        isValid: boolean
-    };
+    generation: UIGenerationOptions;
     generatedImages: GeneratedImage[];
 }
 
