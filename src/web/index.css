@@ -8,6 +8,10 @@ body {
   margin: 0;
 }
 
+#root {
+  overflow-x: hidden;
+}
+
 /** Custom Sidebar Styling **/
 .SideNav {
   list-style-type: none;

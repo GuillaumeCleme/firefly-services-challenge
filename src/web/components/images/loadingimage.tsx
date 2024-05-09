@@ -11,8 +11,9 @@ export interface GeneratedImage {
 export const LoadingImage = ({ coverUrl, prompt }: GeneratedImage) => {
 
   return (
-    <View width='size-6000'>
-      <Image src={coverUrl} alt={prompt}  />
+    
+    <View>
+      <Image src={coverUrl} alt={prompt} maxHeight={'size-4600'} maxWidth={'size-4600'} />
 
     </View>
   )

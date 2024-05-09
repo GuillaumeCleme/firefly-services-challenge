@@ -18,7 +18,7 @@ function App (props: Record<any, any>) {
             areas={['sidebar content']}
             columns={['256px', '3fr']}
             rows={['auto']}
-            height='100vh'
+            minHeight={'100vh'}
             gap='size-100'
           >
             <View
@@ -28,7 +28,7 @@ function App (props: Record<any, any>) {
             >
               <SideBar></SideBar>
             </View>
-            <View gridArea='content' padding='size-200'>
+            <View gridArea='content' padding='size-200' width={'100%'}>
               <AppRouter />
             </View>
           </Grid>
