@@ -7,6 +7,7 @@
   "scripts": {
     "dev:ui": "vite",
     "dev:server": "nodemon",
+    "test": "npm run test:ui && npm run test:server",
     "test:ui": "",
     "test:server": "dotenv -- vitest run test/server",
     "test:e2e": "vitest e2e",
