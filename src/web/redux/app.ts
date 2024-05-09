@@ -20,7 +20,7 @@ const initiateDefaultImages = (numImages: number, isLoading?: boolean, defaultCo
             href: '',
             prompt: '',
             isLoading: isLoading ?? false, //Images are not loading by default
-            coverUrl: defaultCoverUrl ?? 'https://placehold.co/600x400?text=Get started with a text prompt' //Define a default cover
+            coverUrl: defaultCoverUrl ?? 'https://placehold.co/1024x1024?text=Get started with a text prompt' //Define a default cover
         })
     });
 
@@ -69,8 +69,8 @@ const appSlice: Slice = createSlice({
             state.generation.isValid = action.payload;
         },
         initiateImages(state, action) {
-            const { numImages } = action.payload;
-            state.generatedImages = [...initiateDefaultImages(numImages)]; //Initiate images with an initial size
+            const { numImages, isLoading } = action.payload;
+            state.generatedImages = [...initiateDefaultImages(numImages, isLoading)]; //Initiate images with an initial size
         },
         updateImage(state, action) {
             const { index, image } = action.payload; //Using index, but id would be preffered
