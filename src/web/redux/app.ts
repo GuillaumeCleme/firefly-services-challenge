@@ -20,7 +20,7 @@ const initiateDefaultImages = (numImages: number, isLoading?: boolean, defaultCo
             href: '',
             prompt: '',
             isLoading: isLoading ?? false, //Images are not loading by default
-            coverUrl: defaultCoverUrl ?? 'https://placehold.co/1024x1024?text=Get started with a text prompt' //Define a default cover
+            coverUrl: defaultCoverUrl
         })
     });
 
