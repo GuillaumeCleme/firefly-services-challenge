@@ -1,5 +1,6 @@
 import { Slice, createSlice } from "@reduxjs/toolkit";
 import { ActionListing, GeneratedImage, UIGenerationOptions } from "../interfaces";
+import { getDefaultImages } from "./defaults";
 
 interface AppState {
     actions: ActionListing[]
@@ -30,25 +31,7 @@ const initialState: AppState = {
         isValid: true
     },
     //Default to 4 placeholder cards
-    generatedImages: [
-        {
-            href: '',
-            prompt: '',
-        },
-        {
-            href: '',
-            prompt: '',
-        },
-        {
-            href: '',
-            prompt: '',
-        },
-        {
-            href: '',
-            prompt: '',
-        },
-
-    ]
+    generatedImages: getDefaultImages(),
 }
 
 const appSlice: Slice = createSlice({

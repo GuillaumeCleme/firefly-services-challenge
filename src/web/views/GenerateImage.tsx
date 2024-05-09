@@ -75,7 +75,7 @@ export const GenerateImage = () => {
           {
             generatedImages.map(image => (
               //TODO Map props
-              <LoadingImage href={image.href} coverUrl={image.coverUrl || defaultImageUrl} prompt='Prompt Sample' isLoading={image.isLoading} />
+              <LoadingImage key={image.id} id={image.id} href={image.href} coverUrl={image.coverUrl || defaultImageUrl} prompt='Prompt Sample' isLoading={image.isLoading} />
             ))
           }
 

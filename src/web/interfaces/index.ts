@@ -2,6 +2,7 @@ import { GenerationOptions } from "../../server/interfaces"
 
 
 export interface GeneratedImage {
+    id: string,
     href: string,
     coverUrl?: string,
     prompt: string,

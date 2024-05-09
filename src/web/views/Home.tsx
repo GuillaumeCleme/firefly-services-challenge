@@ -16,7 +16,7 @@ export const Home = () => {
       {/* Show all action cards */}
       {
         actions.map(action => (
-          <ActionCard title={action.title} description={action.description} href={action.href} coverUrl={action.coverUrl} />
+          <ActionCard key={action.title} title={action.title} description={action.description} href={action.href} coverUrl={action.coverUrl} />
         ))
       }
     </View>
