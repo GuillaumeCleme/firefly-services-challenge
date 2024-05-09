@@ -20,6 +20,7 @@ import { Routes, Route } from "react-router-dom";
 import { Home } from "../views/Home";
 import { About } from "../views/About";
 import { GenerateImage } from "../views/GenerateImage";
+import { EditImage } from "../views/EditImage";
 
 const AppRouter = () => {
     return(
@@ -27,8 +28,8 @@ const AppRouter = () => {
             {/* <Route path="*" element={<ErrorView />} /> */}
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/generate" element={<GenerateImage />} />            
-
+            <Route path="/generate" element={<GenerateImage />} />
+            <Route path="/edit/:id" element={<EditImage />} />
         </Routes>
     );
 };
