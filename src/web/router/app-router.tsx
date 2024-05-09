@@ -19,13 +19,16 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "../components/Home";
 import { About } from "../components/About";
+import { GenerateImage } from "../components/GenerateImage";
 
 const AppRouter = () => {
     return(
         <Routes>
             {/* <Route path="*" element={<ErrorView />} /> */}
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />            
+            <Route path="/about" element={<About />} />
+            <Route path="/generate" element={<GenerateImage />} />            
+
         </Routes>
     );
 };
