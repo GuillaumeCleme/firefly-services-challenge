@@ -1,5 +1,6 @@
 import { Express } from "express";
 import { IMSController } from "./controllers/ims";
+import { FireflyController } from "./controllers/firefly";
 
 const API_BASE_PATH = '/api/v1';
 
@@ -16,4 +17,7 @@ export function useRoutes(app: Express) {
 
     //IMS token generation
     app.post(`${API_BASE_PATH}/ims/token`, new IMSController().handle)
+
+    //Firefly image generation
+    app.post(`${API_BASE_PATH}/firefly/generate`, new FireflyController().handle)
 }

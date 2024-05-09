@@ -9,10 +9,10 @@ function SideBar () {
   return (
     <ul className="SideNav">
       <li className="SideNav-item">
-        <NavLink className="SideNav-itemLink" activeClassName="is-selected" aria-current="page" exact to="/">Home</NavLink>
+        <NavLink className="SideNav-itemLink" aria-current="page" to="/">Home</NavLink>
       </li>
       <li className="SideNav-item">
-        <NavLink className="SideNav-itemLink" activeClassName="is-selected" aria-current="page" to="/about">About Firefly Services</NavLink>
+        <NavLink className="SideNav-itemLink" aria-current="page" to="/about">About Firefly Services</NavLink>
       </li>
     </ul>
   )
