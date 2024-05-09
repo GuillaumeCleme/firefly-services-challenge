@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Heading, View, TextArea, Button, Flex, Text, Grid, NumberField, Form } from '@adobe/react-spectrum'
+import { Heading, View, TextArea, Button, Flex, Grid, NumberField } from '@adobe/react-spectrum'
 import { LoadingImage } from '../components/images/LoadingImage';
 import { GeneratedImage } from '../interfaces';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';

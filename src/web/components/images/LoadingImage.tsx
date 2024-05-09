@@ -17,7 +17,7 @@ export const LoadingImage = ({ coverUrl, prompt, isLoading }: GeneratedImage) =>
             </Flex>
           ) : (
             <Flex direction={'column'} gap={'size-100'} justifyContent={'center'} alignItems={'center'} >
-              <Image src={coverUrl} alt={prompt} maxHeight={'size-4600'} maxWidth={'size-4600'} />
+              <Image src={coverUrl!} alt={prompt} maxHeight={'size-4600'} maxWidth={'size-4600'} />
             </Flex>
           )
         }

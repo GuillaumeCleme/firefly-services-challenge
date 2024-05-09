@@ -18,6 +18,8 @@ app.use(bodyParser.json());
 //Setup all routes
 useRoutes(app);
 
+//TODO Setup server auth via a middleware
+
 app.listen(3000)
 
 console.log('Example app listening on port 3000!')

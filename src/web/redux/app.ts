@@ -1,8 +1,8 @@
 import { Slice, createSlice } from "@reduxjs/toolkit";
 import { ActionListing, GeneratedImage, UIGenerationOptions } from "../interfaces";
-import { getDefaultImages } from "./defaults";
+import { getInitialState } from "./defaults";
 
-interface AppState {
+export interface AppState {
     actions: ActionListing[]
     actionButton: {
         isLoading: boolean;
@@ -12,31 +12,9 @@ interface AppState {
     generatedImages: GeneratedImage[];
 }
 
-const initialState: AppState = {
-    actions: [
-        {
-            title: 'Generate Image',
-            description: 'Generate an image from a text prompt',
-            href: '/generate',
-            coverUrl: 'https://developer.adobe.com/firefly-services/static/ed3e4e7b5490078d2ca538b4e67a0870/96755/UseCase4_new.webp'
-        }
-    ],
-    actionButton: {
-        isLoading: false,
-        props: {}
-    },
-    generation: {
-        prompt: 'Beautiful cozy fantasy stone cottage in a spring forest aside a cobblestone path and a babbling brook. Stone wall. Mountains in the distance. Magical tone and feel, hyper realistic.',
-        numImages: 4,
-        isValid: true
-    },
-    //Default to 4 placeholder cards
-    generatedImages: getDefaultImages(),
-}
-
 const appSlice: Slice = createSlice({
     name: 'appSlice',
-    initialState: initialState,
+    initialState: getInitialState(),
     reducers: {
         setActionButtonLoading(state, action) {
             state.actionButton.isLoading = action.payload;
