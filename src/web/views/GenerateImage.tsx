@@ -56,6 +56,7 @@ export const GenerateImage = () => {
                 description: `Image generated from Adobe Firefly with prompt '${generationPrompt}' and seed ${output.seed} `,
                 title: generationPrompt,
                 isLoading: false,
+                href: `/edit/${index}`,
                 id: uuidv4()
               }
             }))
@@ -64,6 +65,9 @@ export const GenerateImage = () => {
         .catch((error) => {
           console.error(error);
           ToastQueue.negative('Image generation failed, please try again later.', { timeout: 5000 });
+
+          //Reset image loaders
+          dispatch(initiateImages({numImages: 4, isLoading: false}))
         })
         .finally(() => {
           //Always clear the loading state
