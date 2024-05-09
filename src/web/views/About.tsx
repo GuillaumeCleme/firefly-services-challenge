@@ -11,22 +11,8 @@ export const About = () => (
       <ul style={{ listStyle: 'none' }}>
         <li>
           <Link>
-            <a href='https://github.com/AdobeDocs/project-firefly/blob/master/README.md#project-firefly-developer-guide' target='_blank'>
-              Adobe Developer App Builder
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link>
-            <a href='https://github.com/adobe/aio-sdk#adobeaio-sdk' target='_blank'>
-              Adobe I/O SDK
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link>
-            <a href='https://adobedocs.github.io/adobeio-runtime/' target='_blank'>
-              Adobe I/O Runtime
+            <a href='https://developer.adobe.com/firefly-services/' target='_blank'>
+              Adobe Firefly Services
             </a>
           </Link>
         </li>
