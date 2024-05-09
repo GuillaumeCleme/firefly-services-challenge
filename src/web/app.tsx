@@ -8,6 +8,7 @@ import { HashRouter as Router } from 'react-router-dom'
 import SideBar from './components/SideBar'
 
 import AppRouter from "./router/app-router";
+import { ToastContainer } from '@react-spectrum/toast';
 
 function App (_props: Record<any, any>) {
 
@@ -31,6 +32,7 @@ function App (_props: Record<any, any>) {
             <View gridArea='content' padding='size-200' width={'100%'}>
               <AppRouter />
             </View>
+            <ToastContainer/>
           </Grid>
         </Provider>
       </Router>

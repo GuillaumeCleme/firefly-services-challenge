@@ -2,7 +2,7 @@
 
 export interface GeneratedImage {
     href: string,
-    coverUrl: string,
+    coverUrl?: string,
     prompt: string,
     isLoading?: boolean
 }

@@ -3,11 +3,11 @@ import { Heading, View } from '@adobe/react-spectrum'
 import ActionCard from '../components/cards/ActionCard'
 import { ActionListing } from '../interfaces'
 import { useAppSelector } from '../redux/hooks'
+import { RootState } from '../redux/store'
 
 export const Home = () => {
 
   const actions: ActionListing[] = useAppSelector((state: RootState) => state.app.actions);
-
 
   return (
     <View width='size-6000'>

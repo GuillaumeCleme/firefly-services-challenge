@@ -4,10 +4,14 @@ import { ActionListing, GeneratedImage } from "../interfaces";
 interface AppState {
     actions: ActionListing[]
     actionButton: {
-        show: boolean;
+        isLoading: boolean;
         props: any;
     };
-    generationPrompt: string;
+    generation: {
+        prompt: string,
+        numImages: number
+        isValid: boolean
+    };
     generatedImages: GeneratedImage[];
 }
 
@@ -21,21 +25,31 @@ const initialState: AppState = {
         }
     ],
     actionButton: {
-        show: false,
+        isLoading: false,
         props: {}
     },
-    generationPrompt: '',
+    generation: {
+        prompt: 'Beautiful cozy fantasy stone cottage in a spring forest aside a cobblestone path and a babbling brook. Stone wall. Mountains in the distance. Magical tone and feel, hyper realistic.',
+        numImages: 4,
+        isValid: true
+    },
+    //Default to 4 placeholder cards
     generatedImages: [
         {
-            href: '/edit',
-            coverUrl: 'https://placehold.co/600x400?text=Loading',
-            prompt: 'Prompt Sample',
-            isLoading: true
+            href: '',
+            prompt: '',
         },
         {
-            href: '/edit',
-            coverUrl: 'https://placehold.co/600x400?text=Loading',
-            prompt: 'Prompt Sample',
+            href: '',
+            prompt: '',
+        },
+        {
+            href: '',
+            prompt: '',
+        },
+        {
+            href: '',
+            prompt: '',
         },
 
     ]
@@ -45,8 +59,8 @@ const appSlice: Slice = createSlice({
     name: 'appSlice',
     initialState: initialState,
     reducers: {
-        setShowActionButton(state, action) {
-            state.actionButton.show = action.payload;
+        setActionButtonLoading(state, action) {
+            state.actionButton.isLoading = action.payload;
         },
         setActionButtonProps(state, action) {
             state.actionButton = action.payload;
@@ -54,12 +68,25 @@ const appSlice: Slice = createSlice({
         setGeneratedImages(state, action) {
             state.generatedImages = action.payload;
         },
+        setGenerationPrompt(state, action) {
+            state.generation.prompt = action.payload;
+        },
+        setGenerationNumImages(state, action) {
+            state.generation.numImages = action.payload;
+        },
+        setGenerationIsValid(state, action) {
+            state.generation.isValid = action.payload;
+        },
     }
 });
 
 export const {
-    setShowActionButton,
+    setActionButtonLoading,
     setActionButtonProps,
+    setGeneratedImages,
+    setGenerationPrompt,
+    setGenerationNumImages,
+    setGenerationIsValid,
 } = appSlice.actions;
 
 export default appSlice.reducer;
