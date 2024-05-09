@@ -17,9 +17,9 @@
 
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home } from "../components/Home";
-import { About } from "../components/About";
-import { GenerateImage } from "../components/GenerateImage";
+import { Home } from "../views/Home";
+import { About } from "../views/About";
+import { GenerateImage } from "../views/GenerateImage";
 
 const AppRouter = () => {
     return(

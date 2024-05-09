@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { Heading, View, TextArea, Button } from '@adobe/react-spectrum'
-import { GeneratedImage, LoadingImage } from './images/loadingimage';
+import { GeneratedImage, LoadingImage } from '../components/images/LoadingImage';
 
 export const GenerateImage = () => {
 

@@ -10,7 +10,7 @@ const actions = [
 
 import React from 'react'
 import { Heading, View } from '@adobe/react-spectrum'
-import ActionCard from './cards/actioncard'
+import ActionCard from '../components/cards/ActionCard'
 
 export const Home = () => (
   <View width='size-6000'>
