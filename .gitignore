@@ -24,6 +24,6 @@ dist-ssr
 *.sw?
 
 # Config
-config.json
+#config.json
 .env*
 .aio
