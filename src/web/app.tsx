@@ -9,7 +9,7 @@ import SideBar from './components/SideBar'
 
 import AppRouter from "./router/app-router";
 
-function App (props: Record<any, any>) {
+function App (_props: Record<any, any>) {
 
   return (
       <Router>
