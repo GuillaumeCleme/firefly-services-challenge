@@ -3,7 +3,6 @@ import React from 'react'
 import { Flex, Image, ProgressCircle, View, Text, Button, Link } from '@adobe/react-spectrum'
 import { GeneratedImage } from '../../interfaces'
 import { useNavigate } from 'react-router-dom';
-import { DEFAULT_MIME_TYPE } from '../../../server/interfaces';
 
 export const LoadingImage = ({ href, coverUrl, prompt, isLoading, showEdit, showDownload }: 
   GeneratedImage & { showEdit?: boolean, showDownload?: boolean }) => {
