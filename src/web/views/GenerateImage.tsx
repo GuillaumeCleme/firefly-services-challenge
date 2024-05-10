@@ -23,6 +23,10 @@ export const GenerateImage = () => {
   const numImages = useAppSelector((state: RootState) => state.app.generation.numImages);
   const isValid = useAppSelector((state: RootState) => state.app.generation.isValid);
 
+  /**
+   * Main function in charge of error handling, messages, and API calls to server
+   * @returns void
+   */
   const generateImage = () => {
 
     try {
@@ -49,21 +53,28 @@ export const GenerateImage = () => {
             ToastQueue.negative('Image generation failed, please try again later.', { timeout: 5000 });
             return;
           }
+
+          //Iterate through results and dispatch new images
           (response.data.outputs as { seed: string, image: { id: string, presignedUrl: string } }[]).forEach((output, index) => {
-            dispatch(updateImage({
-              index, image: {
-                coverUrl: output.image.presignedUrl,
-                description: `Image generated from Adobe Firefly with prompt '${generationPrompt}' and seed ${output.seed} `,
-                title: generationPrompt,
-                isLoading: false,
-                id: uuidv4()
-              }
-            }))
+
+            const generatedImage: GeneratedImage = {
+              coverUrl: output.image.presignedUrl,
+              prompt: generationPrompt,
+              description: `Image generated from Adobe Firefly with prompt '${generationPrompt}' and seed ${output.seed} `,
+              isLoading: false,
+              href: `/edit/${index}`,
+              id: uuidv4()
+            }
+
+            dispatch(updateImage({index, image: generatedImage}))
           })
         })
         .catch((error) => {
           console.error(error);
           ToastQueue.negative('Image generation failed, please try again later.', { timeout: 5000 });
+
+          //Reset image loaders
+          dispatch(initiateImages({numImages: 4, isLoading: false}))
         })
         .finally(() => {
           //Always clear the loading state
@@ -97,7 +108,7 @@ export const GenerateImage = () => {
 
             {
               generatedImages.map(image => (
-                <LoadingImage key={image.id} id={image.id} href={image.href} coverUrl={image.coverUrl} prompt='Prompt Sample' isLoading={image.isLoading} />
+                <LoadingImage key={image.id} id={image.id} href={image.href} coverUrl={image.coverUrl} prompt='Prompt Sample' isLoading={image.isLoading} showEdit={true} />
               ))
             }
 
