@@ -2,8 +2,15 @@ import { Express } from "express";
 import { IMSController } from "./controllers/ims";
 import { FireflyController } from "./controllers/firefly";
 import { LightRoomController } from "./controllers/lightroom";
+import { StorageController } from "./controllers/storage";
 
-const API_BASE_PATH = '/api/v1';
+export const API_BASE_PATH = '/api/v1';
+
+export let PUBLIC_URL = 'http://localhost:3000/api/v1';
+
+export const setPublicUrl = (url: string) => {
+    PUBLIC_URL = url;
+}
 
 /**
  * Main Express router for all application routes and middleware
@@ -13,7 +20,7 @@ const API_BASE_PATH = '/api/v1';
 export function useRoutes(app: Express) {
 
     app.get(`${API_BASE_PATH}`, function (_req, res) {
-        res.status(200).send(); //TODO we should handle swagger docs
+        res.status(200).send(PUBLIC_URL); //TODO we should handle swagger docs
     })
 
     //IMS token generation
@@ -24,4 +31,7 @@ export function useRoutes(app: Express) {
 
     //Lightroom image editing
     app.post(`${API_BASE_PATH}/lightroom/edit`, new LightRoomController().handle)
+
+    //Storage Controller
+    app.put(`${API_BASE_PATH}/storage/save`, new StorageController().handle)
 }

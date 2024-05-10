@@ -1,6 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 import { getToken } from "../auth/ims";
 import { DEFAULT_MIME_TYPE, EditOptions } from "../interfaces";
+import { API_BASE_PATH, PUBLIC_URL } from "../routes";
+import { v4 as uuidv4 } from 'uuid'
 
 
 export async function editImage(options: EditOptions): Promise<Record<string, any>> {
@@ -26,7 +28,7 @@ export async function editImage(options: EditOptions): Promise<Record<string, an
         "outputs": [
             {
                 "storage": "external",
-                "href": options.output.href,
+                "href": `${PUBLIC_URL + API_BASE_PATH}/storage/save?fileName=${uuidv4()}.png`,
                 "type": DEFAULT_MIME_TYPE,
                 "overwrite": true,
             }

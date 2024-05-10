@@ -14,9 +14,6 @@ export interface GenerationOptions {
 
 export interface EditOptions {
     href: string
-    output: {
-        href: string
-    }
     //Basic edit options - to be extended
     exposure: 0,
     saturation: 0,

@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { editImage } from "../lightroom";
 
 /**
- * An Express controller to access the Firefly service.
+ * An Express controller to access the Lightroom service.
  */
 export class LightRoomController implements Controller {
     async handle(req: Request, res: Response): Promise<void> {
@@ -12,7 +12,7 @@ export class LightRoomController implements Controller {
             const options: EditOptions = req.body;
 
             //Basic object validation, validating the properties against a schema would be safer
-            if(!options || !options.href || !options.output.href){
+            if(!options || !options.href){
                 res.status(400).send({
                     error: "The request must contain an 'href' and 'output.href'."
                 });
