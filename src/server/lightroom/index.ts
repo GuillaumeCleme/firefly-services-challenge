@@ -51,7 +51,7 @@ export async function editImage(options: EditOptions): Promise<Record<string, an
                 if(!completion){
                     const error = `Timeout occurred while polling for job completion from LightRoom API after ${process.env.MAX_RETRIES} attempts`;
                     console.error(error);
-                    throw new Error()
+                    throw new Error(error)
                 }
                 else{
                     return completion
@@ -92,14 +92,14 @@ async function pollCompletion(response: AxiosResponse, headers: any) {
             
             //Delay polling using a default delay
             await delay();
-            
+
             //Get job status
             const pollResponse = await axios.get(response.data['_links'].self.href, { headers });
     
             //If the call is successful, validate the status and return the response
             if (pollResponse.status == 200) {
-                if (pollResponse.data.status === "succeeded" || pollResponse.data.status === "failed") {
-                    return pollResponse;
+                if (pollResponse.data.outputs[0].status === "succeeded" || pollResponse.data.outputs[0].status === "failed") {
+                    return pollResponse.data;
                 }
             }
             else {
