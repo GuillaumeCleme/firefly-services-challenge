@@ -49,17 +49,20 @@ export const GenerateImage = () => {
             ToastQueue.negative('Image generation failed, please try again later.', { timeout: 5000 });
             return;
           }
+
+          //Iterate through results and dispatch new images
           (response.data.outputs as { seed: string, image: { id: string, presignedUrl: string } }[]).forEach((output, index) => {
-            dispatch(updateImage({
-              index, image: {
-                coverUrl: output.image.presignedUrl,
-                description: `Image generated from Adobe Firefly with prompt '${generationPrompt}' and seed ${output.seed} `,
-                title: generationPrompt,
-                isLoading: false,
-                href: `/edit/${index}`,
-                id: uuidv4()
-              }
-            }))
+
+            const generatedImage: GeneratedImage = {
+              coverUrl: output.image.presignedUrl,
+              prompt: generationPrompt,
+              description: `Image generated from Adobe Firefly with prompt '${generationPrompt}' and seed ${output.seed} `,
+              isLoading: false,
+              href: `/edit/${index}`,
+              id: uuidv4()
+            }
+
+            dispatch(updateImage({index, image: generatedImage}))
           })
         })
         .catch((error) => {
