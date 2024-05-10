@@ -25,6 +25,9 @@ Run `npm run test:e2e` to run integration tests (requires a running server)
 
 Run `npm run build` to build the project
 
+### Testing
+
+For local API testing, a POSTMan collection is also included [here](<docs/Firefly Services Challenge.postman_collection.json>).
 
 ## Documentation
 

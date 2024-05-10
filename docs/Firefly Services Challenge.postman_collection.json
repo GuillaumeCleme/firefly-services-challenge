@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "5b2b53a0-47c7-48ba-abc7-ac522c14c85c",
+		"name": "Firefly Services Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9335506"
+	},
+	"item": [
+		{
+			"name": "Get IMS Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{ROOT_URL}}/ims/token",
+					"host": [
+						"{{ROOT_URL}}"
+					],
+					"path": [
+						"ims",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Firefly Images",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"prompt\": \"Beautiful cozy fantasy stone cottage in a spring forest aside a cobblestone path and a babbling brook. Stone wall. Mountains in the distance. Magical tone and feel, hyper realistic.\",\r\n    \"numImages\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ROOT_URL}}/firefly/generate",
+					"host": [
+						"{{ROOT_URL}}"
+					],
+					"path": [
+						"firefly",
+						"generate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Lightroom Image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"href\": \"https://pre-signed-firefly-prod.s3.amazonaws.com/images/7a8fcbad-bc4e-4b95-8928-1d2144ecfcb4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDA3TX66CSNORXF4%2F20240510%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20240510T041507Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=3fa52d49eaa3e02e4740ff026f1519bbc9303cf97b3acc33586edae3d07bfc84\",\r\n    \"exposure\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ROOT_URL}}/lightroom/edit",
+					"host": [
+						"{{ROOT_URL}}"
+					],
+					"path": [
+						"lightroom",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Local Storage",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/C:/Users/guill/Downloads/localize-hero-sm.png"
+					}
+				},
+				"url": {
+					"raw": "{{ROOT_URL}}/storage/save?fileName={{$guid}}.png",
+					"host": [
+						"{{ROOT_URL}}"
+					],
+					"path": [
+						"storage",
+						"save"
+					],
+					"query": [
+						{
+							"key": "fileName",
+							"value": "{{$guid}}.png"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ROOT_URL",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "PUBLIC_ROOT_URL",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
