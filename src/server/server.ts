@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { API_BASE_PATH, PUBLIC_URL, setPublicUrl, useRoutes } from "./routes";
+import { API_BASE_PATH, LOCAL_URL, setPublicUrl, useRoutes } from "./routes";
 import ngrok from '@ngrok/ngrok'
 import bodyParser from 'body-parser';
 import cors from 'cors'
@@ -34,7 +34,7 @@ useRoutes(app);
 
 //Setup default port
 app.listen(DEFAULT_PORT);
-console.log(`Server listening locally at ${PUBLIC_URL}`)
+console.log(`Server listening locally at ${LOCAL_URL}`)
 
 
 

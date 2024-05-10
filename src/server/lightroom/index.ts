@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { getToken } from "../auth/ims";
 import { DEFAULT_MIME_TYPE, EditOptions } from "../interfaces";
-import { API_BASE_PATH, PUBLIC_URL } from "../routes";
+import { API_BASE_PATH, LOCAL_URL, PUBLIC_URL } from "../routes";
 import { v4 as uuidv4 } from 'uuid'
 
 
@@ -22,7 +22,7 @@ export async function editImage(options: EditOptions): Promise<Record<string, an
         "inputs": {
             "source": {
                 "storage": "external",
-                "href": options.href
+                "href": options.href.replace(LOCAL_URL, PUBLIC_URL) //Expose the image externally
             }
         },
         "outputs": [

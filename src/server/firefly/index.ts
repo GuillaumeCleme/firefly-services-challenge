@@ -3,7 +3,7 @@ import { getToken } from "../auth/ims";
 import { DEFAULT_MIME_TYPE, GenerationOptions } from "../interfaces";
 import { saveLocal } from "../storage/local";
 import { v4 as uuidv4 } from 'uuid'
-import { API_BASE_PATH, PUBLIC_URL } from "../routes";
+import { API_BASE_PATH, LOCAL_URL } from "../routes";
 
 export async function generateImages(options: GenerationOptions): Promise<Record<string, any>> {
 
@@ -65,7 +65,7 @@ export const fetchResultsLocally = async (data: {outputs: { seed: string, image:
         const fileName = await downloadImage(data.outputs[index].image.presignedUrl);
 
         //Replace the preSignedUrl
-        data.outputs[index].image.presignedUrl = `${PUBLIC_URL + API_BASE_PATH}/storage/get?fileName=${fileName}`
+        data.outputs[index].image.presignedUrl = `${LOCAL_URL + API_BASE_PATH}/storage/get?fileName=${fileName}`
     }
 
     return data;
