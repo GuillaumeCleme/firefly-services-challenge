@@ -1,11 +1,15 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Flex, Heading, View, Slider } from '@adobe/react-spectrum'
 import { useParams } from 'react-router-dom'
 import { GeneratedImage } from '../interfaces';
-import { useAppSelector } from '../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { RootState } from '../redux/store';
 import { LoadingImage } from '../components/images/LoadingImage';
+import { setActionButtonLoading, updateImage } from '../redux/app';
+import axios from 'axios';
+import { EditOptions } from '../../server/interfaces';
+import { ToastQueue } from '@react-spectrum/toast';
 
 export const EditImage = () => {
 
@@ -13,8 +17,76 @@ export const EditImage = () => {
   //TODO We currently use an index, but a map reduce would allow an ID lookup
   const imageId = parseInt(useParams().id ?? '');
 
+  const dispatch = useAppDispatch();
+
+  //Setup local state values
+  const [exposure, setExposure] = useState(0);
+  const [contrast, setContrast] = useState(0);
+  const [saturation, setSaturation] = useState(0);
+
+
   //Image redux references
   const generatedImages: GeneratedImage[] = useAppSelector((state: RootState) => state.app.generatedImages);
+
+  const editImage = () => {
+    try {
+      //Set loading state
+      dispatch(setActionButtonLoading(true))
+
+
+      //Define new image loaders
+      dispatch(updateImage({index: imageId, image: {isLoading: true}}))
+
+      axios.post(`${import.meta.env.VITE_SYSTEM_API_ENDPOINT}/lightroom/edit`, { 
+        href: generatedImages[imageId].coverUrl, 
+        exposure,
+        contrast,
+        saturation 
+      } as EditOptions)
+        .then((response) => {
+          if (!response.data.outputs) {
+            console.error(`Response code ${response.status} received from LightRoom API with message ${response.statusText}`);
+            ToastQueue.negative('Image editing failed, please try again later.', { timeout: 5000 });
+            return;
+          }
+
+          //Extract edited image link (with an on-the-fly interface)
+          const editedImageHref = (response.data.outputs as { 
+            input: string, 
+            status: string, 
+            _links: { 
+              self: { 
+                href: string, 
+                storage: string
+              }
+            } 
+          }[])[0]._links.self.href
+     
+          const fileName = editedImageHref.split('=')[1];
+          
+            
+
+          dispatch(updateImage({index: imageId, image: {coverUrl: `${import.meta.env.VITE_SYSTEM_API_ENDPOINT}/storage/get?fileName=${fileName}`}}))
+          
+        })
+        .catch((error) => {
+          console.error(error);
+          ToastQueue.negative('Image editing failed, please try again later.', { timeout: 5000 });
+
+          //Reset image loader
+          dispatch(updateImage({index: imageId, image: {isLoading: false}}))
+        })
+        .finally(() => {
+          //Always clear the loading state
+          dispatch(setActionButtonLoading(false))
+        })
+
+    } catch (error) {
+      console.error(error);
+      ToastQueue.negative('Image editing failed, please review your configuration.', { timeout: 5000 });
+      dispatch(setActionButtonLoading(false))
+    }
+  }
 
   return (
     <View>
@@ -33,6 +105,8 @@ export const EditImage = () => {
                   minValue={-5}
                   maxValue={5}
                   defaultValue={0}
+                  onChange={(val) => setExposure(val)}
+                  onChangeEnd={editImage} 
                 />
                 <Slider
                   label="Saturation"
@@ -40,6 +114,8 @@ export const EditImage = () => {
                   minValue={-100}
                   maxValue={100}
                   defaultValue={0}
+                  onChange={(val) => setSaturation(val)}
+                  onChangeEnd={editImage} 
                 />
                 <Slider
                   label="Contrast"
@@ -47,6 +123,8 @@ export const EditImage = () => {
                   minValue={-100}
                   maxValue={100}
                   defaultValue={0}
+                  onChange={(val) => setContrast(val)}
+                  onChangeEnd={editImage}  
                 />
               </Flex>
             </View>

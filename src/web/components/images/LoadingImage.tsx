@@ -4,7 +4,7 @@ import { Flex, Image, ProgressCircle, View, Text, Button } from '@adobe/react-sp
 import { GeneratedImage } from '../../interfaces'
 import { useNavigate } from 'react-router-dom';
 
-export const LoadingImage = ({ href, coverUrl, prompt, isLoading }: GeneratedImage) => {
+export const LoadingImage = ({ href, coverUrl, prompt, isLoading, showEdit }: GeneratedImage & { showEdit?: boolean }) => {
 
   const navigate = useNavigate();
 
@@ -25,9 +25,14 @@ export const LoadingImage = ({ href, coverUrl, prompt, isLoading }: GeneratedIma
           ) : coverUrl ? (
             <Flex direction={'column'} justifyContent={'center'} alignItems={'center'} >
               <Image src={coverUrl} alt={prompt} maxHeight={'size-3600'} maxWidth={'size-3600'} />
-              <View paddingTop={'size-100'}>
-                <Button variant="accent" onPress={editImage}>Edit Image</Button>
-              </View>
+              {
+                showEdit ? (
+                  <View paddingTop={'size-100'}>
+                    <Button variant="accent" onPress={editImage}>Edit Image</Button>
+                  </View>
+
+                ) : null
+              }
             </Flex>
           ) : (
             <Flex direction={'column'} justifyContent={'center'} alignItems={'center'} height={'100%'}>

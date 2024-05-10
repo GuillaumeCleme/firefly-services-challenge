@@ -23,6 +23,10 @@ export const GenerateImage = () => {
   const numImages = useAppSelector((state: RootState) => state.app.generation.numImages);
   const isValid = useAppSelector((state: RootState) => state.app.generation.isValid);
 
+  /**
+   * Main function in charge of error handling, messages, and API calls to server
+   * @returns void
+   */
   const generateImage = () => {
 
     try {
@@ -104,7 +108,7 @@ export const GenerateImage = () => {
 
             {
               generatedImages.map(image => (
-                <LoadingImage key={image.id} id={image.id} href={image.href} coverUrl={image.coverUrl} prompt='Prompt Sample' isLoading={image.isLoading} />
+                <LoadingImage key={image.id} id={image.id} href={image.href} coverUrl={image.coverUrl} prompt='Prompt Sample' isLoading={image.isLoading} showEdit={true} />
               ))
             }
 
