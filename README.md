@@ -14,6 +14,35 @@ This repository holds a sample React Spectrum and Express application used to sh
 
 Get started by running `npm install`
 
+### Configuring the Environment
+
+Before running the application, you will need to configure a `.env` file. Here's sample configuration:
+
+```
+### IMS ###
+IMS_ENDPOINT=https://ims-na1.adobelogin.com/ims/token/v3 #Default IMS URI
+IMS_CLIENT_ID=<client_id> #IMS Credential Client ID
+IMS_CLIENT_SECRET=<client_secret> #IMS Credential Secret
+IMS_SCOPE=<scope> #IMS Credential Scope
+
+### Firefly ###
+FIREFLY_API_ENDPOINT=https://firefly-api.adobe.io #Default Firefly URI
+
+### Lightroom ###
+LIGHTROOM_API_ENDPOINT=https://image.adobe.io #Default Lightroom URI
+
+### API ###
+VITE_SYSTEM_API_ENDPOINT=http://localhost:3000/api/v1 #Default server URI
+EXPRESS_PORT=3000 #Default Express port
+EXPOSE_PUBLIC=true #Control if the system should be exposed publicly
+NGROK_AUTHTOKEN=<token> #Ngrok token to expose the system publicly
+
+### Polling/Waiting ###
+DEFAULT_DELAY = 1000
+MAX_RETRIES = 25
+LLM_DEFAULT_RETRY=3
+```
+
 ### Build and Run
 The build scripts included in this project support both `ui` and `server` modularity. Append a `:ui` or `:server` suffix to the following build scripts to target specific modules.
 
