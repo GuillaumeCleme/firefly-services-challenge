@@ -63,10 +63,12 @@ export const EditImage = () => {
           }[])[0]._links.self.href
      
           const fileName = editedImageHref.split('=')[1];
-          
-            
 
-          dispatch(updateImage({index: imageId, image: {coverUrl: `${import.meta.env.VITE_SYSTEM_API_ENDPOINT}/storage/get?fileName=${fileName}`}}))
+          dispatch(updateImage({index: imageId, 
+            image: {
+              coverUrl: `${import.meta.env.VITE_SYSTEM_API_ENDPOINT}/storage/get?fileName=${fileName}`
+            }
+          }))
           
         })
         .catch((error) => {
