@@ -1,11 +1,9 @@
 import axios from "axios";
 import { getToken } from "../auth/ims";
-import { GenerationOptions } from "../interfaces";
+import { DEFAULT_MIME_TYPE, GenerationOptions } from "../interfaces";
 
 
-export async function generateImages(options: GenerationOptions): Promise<string> {
-
-    let mimetype = 'image/png'; // default
+export async function generateImages(options: GenerationOptions): Promise<Record<string, any>> {
 
     //Get a new IMS token
     //TODO This token should be cached
@@ -13,7 +11,7 @@ export async function generateImages(options: GenerationOptions): Promise<string
 
     const headers = {
         'x-api-key': process.env.IMS_CLIENT_ID,
-        'x-accept-mimetype': mimetype,
+        'x-accept-mimetype': DEFAULT_MIME_TYPE,
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
     };

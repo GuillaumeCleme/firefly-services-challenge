@@ -1,6 +1,7 @@
 import { Express } from "express";
 import { IMSController } from "./controllers/ims";
 import { FireflyController } from "./controllers/firefly";
+import { LightRoomController } from "./controllers/lightroom";
 
 const API_BASE_PATH = '/api/v1';
 
@@ -20,4 +21,7 @@ export function useRoutes(app: Express) {
 
     //Firefly image generation
     app.post(`${API_BASE_PATH}/firefly/generate`, new FireflyController().handle)
+
+    //Lightroom image editing
+    app.post(`${API_BASE_PATH}/lightroom/edit`, new LightRoomController().handle)
 }
