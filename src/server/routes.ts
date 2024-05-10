@@ -6,7 +6,7 @@ import { StorageGetController, StorageSaveController } from "./controllers/stora
 
 export const API_BASE_PATH = '/api/v1';
 
-export let PUBLIC_URL = 'http://localhost:3000/api/v1';
+export let PUBLIC_URL = 'http://localhost:3000';
 
 export const setPublicUrl = (url: string) => {
     PUBLIC_URL = url;
