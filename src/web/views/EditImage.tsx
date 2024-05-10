@@ -140,6 +140,7 @@ export const EditImage = () => {
                   coverUrl={generatedImages[imageId].coverUrl}
                   prompt={generatedImages[imageId].prompt}
                   isLoading={generatedImages[imageId].isLoading}
+                  showDownload={true}
                 />
               </Flex>
             </View>

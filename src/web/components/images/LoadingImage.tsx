@@ -1,10 +1,12 @@
 
 import React from 'react'
-import { Flex, Image, ProgressCircle, View, Text, Button } from '@adobe/react-spectrum'
+import { Flex, Image, ProgressCircle, View, Text, Button, Link } from '@adobe/react-spectrum'
 import { GeneratedImage } from '../../interfaces'
 import { useNavigate } from 'react-router-dom';
+import { DEFAULT_MIME_TYPE } from '../../../server/interfaces';
 
-export const LoadingImage = ({ href, coverUrl, prompt, isLoading, showEdit }: GeneratedImage & { showEdit?: boolean }) => {
+export const LoadingImage = ({ href, coverUrl, prompt, isLoading, showEdit, showDownload }: 
+  GeneratedImage & { showEdit?: boolean, showDownload?: boolean }) => {
 
   const navigate = useNavigate();
 
@@ -31,7 +33,17 @@ export const LoadingImage = ({ href, coverUrl, prompt, isLoading, showEdit }: Ge
                     <Button variant="accent" onPress={editImage}>Edit Image</Button>
                   </View>
 
-                ) : null
+                ) 
+                : 
+                showDownload ? (
+                    <View paddingTop={'size-100'}>
+                      {/* TODO: Force a download */}
+                      <Link href={coverUrl} download target={'_blank'}>
+                        <Button variant="accent">Download Image</Button>
+                      </Link>
+                    </View>
+                ) 
+                : null
               }
             </Flex>
           ) : (
